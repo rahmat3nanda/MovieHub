@@ -14,7 +14,7 @@
 		AF9ED4A72FD071A90061F5FE /* Exceptions for "MovieHub" folder in "MovieHub" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				SupportingFiles/Info.plist,
 			);
 			target = AF9ED4942FD071A60061F5FE /* MovieHub */;
 		};
@@ -147,7 +147,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MNGAL283XP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MovieHub/Info.plist;
+				INFOPLIST_FILE = MovieHub/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -179,7 +179,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MNGAL283XP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MovieHub/Info.plist;
+				INFOPLIST_FILE = MovieHub/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
