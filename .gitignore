@@ -1,0 +1,78 @@
+# OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two carriage returns
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might be created on a Novell network
+.TemporaryItems
+.apdisk
+
+# Xcode
+#
+# Reference: https://developer.apple.com/library/ios/technotes/tn2339/_index.html
+
+# Xcode user-specific settings
+xcuserdata/
+*.xcuserdata
+*.xcuserstate
+
+# Xcode build products and DerivedData
+build/
+DerivedData/
+*.moved-aside
+
+# Xcode archives
+*.xcarchive
+
+# Xcode Playground
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+#
+# Add this line if you want to avoid checking in SPM's build artifacts
+.build/
+# Swift Package Manager workspace files
+.swiftpm/xcode/
+
+# CocoaPods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should do it if you do not want to share dependencies.
+# Pods/
+
+# Carthage
+#
+# Add this line if you want to avoid checking in Carthage's build artifacts
+Carthage/Build/
+
+# AccuRev
+.accurev/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Code Signing/Certificates
+*.p12
+*.cer
+*.key
+*.mobileprovision
+
+# JetBrains (AppCode, CLion, etc.)
+.idea/
+cmake-build-*/
+
+# Miscellaneous
+*.mode1v3
+*.mode2v3
+*.perspectivev3
