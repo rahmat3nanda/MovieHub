@@ -12,25 +12,22 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6ue-Sg-EaB">
+                    <view key="view" contentMode="scaleToFill" id="oR0-Jj-dN9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Gal-LJ-Ks4">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="z1v-F9-4V3">
                                 <rect key="frame" x="132.66666666666666" y="362" width="127.99999999999997" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="4cL-ch-9lh"/>
-                                    <constraint firstAttribute="width" constant="128" id="N6I-gF-AoT"/>
+                                    <constraint firstAttribute="width" constant="128" id="uAa-e6-A0j"/>
+                                    <constraint firstAttribute="height" constant="128" id="x57-q8-AgH"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" name="Background"/>
-                        <accessibility key="accessibilityConfiguration">
-                            <accessibilityTraits key="traits" notEnabled="YES"/>
-                        </accessibility>
                         <constraints>
-                            <constraint firstItem="Gal-LJ-Ks4" firstAttribute="centerX" secondItem="6ue-Sg-EaB" secondAttribute="centerX" id="SIY-ws-ghg"/>
-                            <constraint firstItem="Gal-LJ-Ks4" firstAttribute="centerY" secondItem="6ue-Sg-EaB" secondAttribute="centerY" id="i8F-H0-Iqz"/>
+                            <constraint firstItem="z1v-F9-4V3" firstAttribute="centerX" secondItem="oR0-Jj-dN9" secondAttribute="centerX" id="3Lk-h1-Nja"/>
+                            <constraint firstItem="z1v-F9-4V3" firstAttribute="centerY" secondItem="oR0-Jj-dN9" secondAttribute="centerY" id="r17-GH-ZyM"/>
                         </constraints>
                     </view>
                 </viewController>
