@@ -10,6 +10,8 @@
 		AF65CD322FD0933600C603AB /* DIContainer in Frameworks */ = {isa = PBXBuildFile; productRef = AF65CD312FD0933600C603AB /* DIContainer */; };
 		AF65CD342FD0933A00C603AB /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = AF65CD332FD0933A00C603AB /* DesignSystem */; };
 		AF65CD362FD0936400C603AB /* NetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = AF65CD352FD0936400C603AB /* NetworkManager */; };
+		AF8A63432FD09DC4002B6A59 /* SharedUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF8A63422FD09DC4002B6A59 /* SharedUI */; };
+		AF8A63452FD09E08002B6A59 /* UtilityKit in Frameworks */ = {isa = PBXBuildFile; productRef = AF8A63442FD09E08002B6A59 /* UtilityKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF65CD322FD0933600C603AB /* DIContainer in Frameworks */,
+				AF8A63432FD09DC4002B6A59 /* SharedUI in Frameworks */,
+				AF8A63452FD09E08002B6A59 /* UtilityKit in Frameworks */,
 				AF65CD342FD0933A00C603AB /* DesignSystem in Frameworks */,
 				AF65CD362FD0936400C603AB /* NetworkManager in Frameworks */,
 			);
@@ -99,6 +103,8 @@
 				AF65CD312FD0933600C603AB /* DIContainer */,
 				AF65CD332FD0933A00C603AB /* DesignSystem */,
 				AF65CD352FD0936400C603AB /* NetworkManager */,
+				AF8A63422FD09DC4002B6A59 /* SharedUI */,
+				AF8A63442FD09E08002B6A59 /* UtilityKit */,
 			);
 			productName = MovieHub;
 			productReference = AF9ED4952FD071A60061F5FE /* MovieHub.app */;
@@ -401,6 +407,14 @@
 		AF65CD352FD0936400C603AB /* NetworkManager */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkManager;
+		};
+		AF8A63422FD09DC4002B6A59 /* SharedUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedUI;
+		};
+		AF8A63442FD09E08002B6A59 /* UtilityKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UtilityKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

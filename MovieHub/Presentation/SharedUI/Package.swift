@@ -10,13 +10,15 @@ let package = Package(
         .library(name: "SharedUI", targets: ["SharedUI"])
     ],
     dependencies: [
-        .package(path: "../DesignSystem")
+        .package(path: "../DesignSystem"),
+        .package(path: "../../Foundation/UtilityKit")
     ],
     targets: [
         .target(
             name: "SharedUI",
             dependencies: [
-                "DesignSystem"
+                "DesignSystem",
+                "UtilityKit"
             ]
         )
     ]
