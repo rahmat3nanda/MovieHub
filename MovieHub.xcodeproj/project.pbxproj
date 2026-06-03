@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AF65CD322FD0933600C603AB /* DIContainer in Frameworks */ = {isa = PBXBuildFile; productRef = AF65CD312FD0933600C603AB /* DIContainer */; };
+		AF65CD342FD0933A00C603AB /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = AF65CD332FD0933A00C603AB /* DesignSystem */; };
+		AF65CD362FD0936400C603AB /* NetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = AF65CD352FD0936400C603AB /* NetworkManager */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		AF9ED4952FD071A60061F5FE /* MovieHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,16 +42,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF65CD322FD0933600C603AB /* DIContainer in Frameworks */,
+				AF65CD342FD0933A00C603AB /* DesignSystem in Frameworks */,
+				AF65CD362FD0936400C603AB /* NetworkManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF65CD302FD0933600C603AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AF9ED48C2FD071A60061F5FE = {
 			isa = PBXGroup;
 			children = (
 				AF9ED4972FD071A60061F5FE /* MovieHub */,
+				AF65CD302FD0933600C603AB /* Frameworks */,
 				AF9ED4962FD071A60061F5FE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,6 +96,9 @@
 			);
 			name = MovieHub;
 			packageProductDependencies = (
+				AF65CD312FD0933600C603AB /* DIContainer */,
+				AF65CD332FD0933A00C603AB /* DesignSystem */,
+				AF65CD352FD0936400C603AB /* NetworkManager */,
 			);
 			productName = MovieHub;
 			productReference = AF9ED4952FD071A60061F5FE /* MovieHub.app */;
@@ -368,6 +388,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AF65CD312FD0933600C603AB /* DIContainer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DIContainer;
+		};
+		AF65CD332FD0933A00C603AB /* DesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DesignSystem;
+		};
+		AF65CD352FD0936400C603AB /* NetworkManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkManager;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AF9ED48D2FD071A60061F5FE /* Project object */;
 }

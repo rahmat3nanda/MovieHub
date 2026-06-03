@@ -5,6 +5,7 @@
 //  Created by Rahmat Trinanda Pramudya Amar on 03/06/26.
 //
 
+import DesignSystem
 import UIKit
 
 class ViewController: UIViewController {
