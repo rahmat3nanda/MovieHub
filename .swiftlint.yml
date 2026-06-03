@@ -17,11 +17,9 @@ opt_in_rules:
   - empty_count                # Prefer `.isEmpty` over `.count == 0`
   - empty_string               # Prefer `.isEmpty` over `== ""`
   - force_unwrapping           # Warn against forced unwrapping `!` (crucial for Clean Architecture)
-  - contains_over_first_where  # Prefer `.contains` over `.first(where:) != nil`
+  - contains_over_first_not_nil # Prefer `.contains` over `.first(where:) != nil`
   - discouraged_object_literal # Prefer programmatic colors/images over UI/NS Color/Image literals
-  - fatal_error_prevented      # Avoid fatalError in production code
   - first_where                # Prefer `.first(where:)` over `.filter().first`
-  - force_unwrapping           # Prevent forced unwraps
   - implicitly_unwrapped_optional # Prevent implicitly unwrapped optionals
 
 # -----------------------------------------------------------------------------
