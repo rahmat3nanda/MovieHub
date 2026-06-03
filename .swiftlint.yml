@@ -31,7 +31,6 @@ opt_in_rules:
 # Paths to include during linting (SwiftLint targets these folders)
 included:
   - MovieHub
-  - Application
 
 # Paths to ignore during linting (takes precedence over 'included')
 excluded:
