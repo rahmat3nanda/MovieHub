@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,22 +16,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="I9X-el-ji6">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Gal-LJ-Ks4">
                                 <rect key="frame" x="132.66666666666666" y="362" width="127.99999999999997" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="TLL-44-lxN"/>
-                                    <constraint firstAttribute="width" constant="128" id="r1L-0s-7VB"/>
+                                    <constraint firstAttribute="height" constant="128" id="4cL-ch-9lh"/>
+                                    <constraint firstAttribute="width" constant="128" id="N6I-gF-AoT"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="gCD-x6-Ic0"/>
                         <color key="backgroundColor" name="Background"/>
                         <accessibility key="accessibilityConfiguration">
                             <accessibilityTraits key="traits" notEnabled="YES"/>
                         </accessibility>
                         <constraints>
-                            <constraint firstItem="I9X-el-ji6" firstAttribute="centerX" secondItem="6ue-Sg-EaB" secondAttribute="centerX" id="N30-R6-Dfn"/>
-                            <constraint firstItem="I9X-el-ji6" firstAttribute="centerY" secondItem="6ue-Sg-EaB" secondAttribute="centerY" id="RR7-fp-QWA"/>
+                            <constraint firstItem="Gal-LJ-Ks4" firstAttribute="centerX" secondItem="6ue-Sg-EaB" secondAttribute="centerX" id="SIY-ws-ghg"/>
+                            <constraint firstItem="Gal-LJ-Ks4" firstAttribute="centerY" secondItem="6ue-Sg-EaB" secondAttribute="centerY" id="i8F-H0-Iqz"/>
                         </constraints>
                     </view>
                 </viewController>
