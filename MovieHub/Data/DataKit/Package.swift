@@ -11,17 +11,19 @@ let package = Package(
         .library(name: "DataKit", targets: ["DataKit"])
     ],
     dependencies: [
+        .package(path: "../../Core/DIContainer"),
         .package(path: "../../Core/NetworkManager"),
-        .package(path: "../../Domain/DomainKit"),
-        .package(path: "../../Core/Persistence")
+        .package(path: "../../Core/Persistence"),
+        .package(path: "../../Domain/DomainKit")
     ],
     targets: [
         .target(
             name: "DataKit",
             dependencies: [
-                "DomainKit",
+                "DIContainer",
                 "NetworkManager",
-                "Persistence"
+                "Persistence",
+                "DomainKit"
             ]
         ),
         .testTarget(

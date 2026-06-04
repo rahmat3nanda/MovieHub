@@ -7,7 +7,7 @@ public struct MovieListResponseDTO: Codable {
     public let totalPages: Int
     public let totalResults: Int
     
-    public init(dates: MovieListDatesResponseDTO?, page: Int, results: [MovieResponseDTO], totalPages: Int, totalResults: Int) {
+    public init(dates: MovieListDatesResponseDTO? = nil, page: Int, results: [MovieResponseDTO], totalPages: Int, totalResults: Int) {
         self.dates = dates
         self.page = page
         self.results = results

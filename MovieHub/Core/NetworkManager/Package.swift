@@ -11,7 +11,7 @@ let package = Package(
         .library(name: "NetworkManager", targets: ["NetworkManager"])
     ],
     dependencies: [
-        .package(path: "../Constants"),
+        .package(path: "../Constants")
     ],
     targets: [
         .target(
