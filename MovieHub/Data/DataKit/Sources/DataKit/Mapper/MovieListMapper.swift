@@ -10,7 +10,13 @@ import DomainKit
 
 extension MovieListResponseDTO {
     public func toDomain() -> MovieList {
-        MovieList(dates: dates?.toDomain(), page: page, results: results.map { $0.toDomain() })
+        MovieList(
+            dates: dates?.toDomain(),
+            page: page,
+            results: results.map { $0.toDomain() },
+            totalPages: totalPages,
+            totalResults: totalResults
+        )
     }
 }
 

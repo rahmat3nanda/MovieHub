@@ -5,6 +5,7 @@
 //  Created by Rahmat Trinanda Pramudya Amar on 04/06/26.
 //
 
+import DomainKit
 import NetworkManager
 
 public enum MovieListEndpoint: Endpoint {

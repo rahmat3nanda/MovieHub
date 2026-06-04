@@ -1,6 +1,6 @@
 //
-//  MovieRequestDTO.swift
-//  DataKit
+//  MovieRequest.swift
+//  DomainKit
 //
 //  Created by Rahmat Trinanda Pramudya Amar on 04/06/26.
 //

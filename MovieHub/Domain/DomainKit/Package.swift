@@ -4,7 +4,8 @@ import PackageDescription
 let package = Package(
     name: "DomainKit",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v13),
+        .macOS(.v12)
     ],
     products: [
         .library(name: "DomainKit", targets: ["DomainKit"])

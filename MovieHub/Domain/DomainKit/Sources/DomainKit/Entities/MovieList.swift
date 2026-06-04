@@ -11,11 +11,15 @@ public struct MovieList: Equatable {
     public let dates: MovieListDates?
     public let page: Int
     public let results: [Movie]
+    public let totalPages: Int
+    public let totalResults: Int
 
-    public init(dates: MovieListDates?, page: Int, results: [Movie]) {
+    public init(dates: MovieListDates?, page: Int, results: [Movie], totalPages: Int, totalResults: Int) {
         self.dates = dates
         self.page = page
         self.results = results
+        self.totalPages = totalPages
+        self.totalResults = totalResults
     }
 }
 
