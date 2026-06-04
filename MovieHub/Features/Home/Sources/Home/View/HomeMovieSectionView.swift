@@ -4,22 +4,22 @@ import DomainKit
 import SharedUI
 import DesignSystem
 
-public enum SectionState {
+public enum HomeSectionState {
     case loading
     case loaded([Movie])
     case empty
     case error(Error)
 }
 
-public final class MovieSectionView: UIView {
+final class HomeMovieSectionView: UIView {
     
     // MARK: - Callbacks
-    public var onRetry: (() -> Void)?
-    public var onSeeAll: (() -> Void)?
-    public var onSelectMovie: ((Movie) -> Void)?
+    var onRetry: (() -> Void)?
+    var onSeeAll: (() -> Void)?
+    var onSelectMovie: ((Movie) -> Void)?
     
     // MARK: - State
-    public var state: SectionState = .loading {
+    var state: HomeSectionState = .loading {
         didSet {
             updateStateUI()
         }
@@ -112,7 +112,7 @@ public final class MovieSectionView: UIView {
     
     // MARK: - Initializer
     
-    public init(title: String) {
+    init(title: String) {
         super.init(frame: .zero)
         titleLabel.text = title
         setupUI()
@@ -202,9 +202,9 @@ public final class MovieSectionView: UIView {
 
 // MARK: - UICollectionViewDataSource & UICollectionViewDelegate
 
-extension MovieSectionView: UICollectionViewDataSource, UICollectionViewDelegate {
+extension HomeMovieSectionView: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch state {
         case .loading:
             return 5 // Display 5 skeleton loading cards
@@ -215,7 +215,7 @@ extension MovieSectionView: UICollectionViewDataSource, UICollectionViewDelegate
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: MovieItemCell.reuseIdentifier,
             for: indexPath
@@ -236,7 +236,7 @@ extension MovieSectionView: UICollectionViewDataSource, UICollectionViewDelegate
         return cell
     }
     
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if case .loaded(let movies) = state {
             let movie = movies[indexPath.item]
             onSelectMovie?(movie)

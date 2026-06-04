@@ -27,10 +27,10 @@ final class HomeView: UIView {
     }()
     
     // Sections in order: Now Playing, Popular, Top Rated, Upcoming
-    let nowPlayingSection = MovieSectionView(title: "Now Playing")
-    let popularSection = MovieSectionView(title: "Popular")
-    let topRatedSection = MovieSectionView(title: "Top Rated")
-    let upcomingSection = MovieSectionView(title: "Upcoming")
+    let nowPlayingSection = HomeMovieSectionView(title: "Now Playing")
+    let popularSection = HomeMovieSectionView(title: "Popular")
+    let topRatedSection = HomeMovieSectionView(title: "Top Rated")
+    let upcomingSection = HomeMovieSectionView(title: "Upcoming")
     
     // Pull to Refresh
     let refreshControl = UIRefreshControl()

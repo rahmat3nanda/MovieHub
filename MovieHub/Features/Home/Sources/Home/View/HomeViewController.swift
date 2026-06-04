@@ -2,10 +2,10 @@ import UIKit
 import DomainKit
 
 public protocol HomeViewProtocol: AnyObject {
-    func showNowPlayingState(_ state: SectionState)
-    func showPopularState(_ state: SectionState)
-    func showTopRatedState(_ state: SectionState)
-    func showUpcomingState(_ state: SectionState)
+    func showNowPlayingState(_ state: HomeSectionState)
+    func showPopularState(_ state: HomeSectionState)
+    func showTopRatedState(_ state: HomeSectionState)
+    func showUpcomingState(_ state: HomeSectionState)
     func endRefreshing()
 }
 
@@ -97,25 +97,25 @@ public final class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeViewProtocol {
     
-    public func showNowPlayingState(_ state: SectionState) {
+    public func showNowPlayingState(_ state: HomeSectionState) {
         DispatchQueue.main.async { [weak self] in
             self?.homeView.nowPlayingSection.state = state
         }
     }
     
-    public func showPopularState(_ state: SectionState) {
+    public func showPopularState(_ state: HomeSectionState) {
         DispatchQueue.main.async { [weak self] in
             self?.homeView.popularSection.state = state
         }
     }
     
-    public func showTopRatedState(_ state: SectionState) {
+    public func showTopRatedState(_ state: HomeSectionState) {
         DispatchQueue.main.async { [weak self] in
             self?.homeView.topRatedSection.state = state
         }
     }
     
-    public func showUpcomingState(_ state: SectionState) {
+    public func showUpcomingState(_ state: HomeSectionState) {
         DispatchQueue.main.async { [weak self] in
             self?.homeView.upcomingSection.state = state
         }
