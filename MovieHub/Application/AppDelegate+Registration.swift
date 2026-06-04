@@ -8,10 +8,12 @@
 import DIContainer
 import NetworkManager
 import Persistence
+import SharedUI
 
 extension AppDelegate {
     func register() {
         DIContainer.shared.register(NetworkService.self, dependency: URLSessionNetworkService())
         DIContainer.shared.register(Storage.self, dependency: UserDefaultsStorage())
+        DIContainer.shared.register(ToastService.self, dependency: DefaultToastService())
     }
 }

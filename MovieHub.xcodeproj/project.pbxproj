@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF21649B2FD1775D0072DB59 /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = AF21649A2FD1775D0072DB59 /* Home */; };
 		AF65CD322FD0933600C603AB /* DIContainer in Frameworks */ = {isa = PBXBuildFile; productRef = AF65CD312FD0933600C603AB /* DIContainer */; };
 		AF65CD342FD0933A00C603AB /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = AF65CD332FD0933A00C603AB /* DesignSystem */; };
 		AF65CD362FD0936400C603AB /* NetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = AF65CD352FD0936400C603AB /* NetworkManager */; };
@@ -51,6 +52,7 @@
 				AF8A63452FD09E08002B6A59 /* UtilityKit in Frameworks */,
 				AF65CD342FD0933A00C603AB /* DesignSystem in Frameworks */,
 				AF65CD362FD0936400C603AB /* NetworkManager in Frameworks */,
+				AF21649B2FD1775D0072DB59 /* Home in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +110,7 @@
 				AF8A63422FD09DC4002B6A59 /* SharedUI */,
 				AF8A63442FD09E08002B6A59 /* UtilityKit */,
 				AFE4B3052FD16A93001B3589 /* Persistence */,
+				AF21649A2FD1775D0072DB59 /* Home */,
 			);
 			productName = MovieHub;
 			productReference = AF9ED4952FD071A60061F5FE /* MovieHub.app */;
@@ -399,6 +402,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AF21649A2FD1775D0072DB59 /* Home */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Home;
+		};
 		AF65CD312FD0933600C603AB /* DIContainer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DIContainer;
