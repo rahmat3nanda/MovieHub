@@ -42,8 +42,8 @@ public final class MainTabBarController: UITabBarController {
         discoverNav.setNavigationBarHidden(true, animated: false)
         discoverNav.tabBarItem = UITabBarItem(
             title: "Discover",
-            image: UIImage(systemName: "magnifyingglass"),
-            selectedImage: UIImage(systemName: "magnifyingglass.circle.fill")
+            image: UIImage(systemName: "safari"),
+            selectedImage: UIImage(systemName: "safari.fill")
         )
         
         // Tab 3: Profile

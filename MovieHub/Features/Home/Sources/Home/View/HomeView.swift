@@ -9,7 +9,7 @@ final class HomeView: UIView {
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.alwaysBounceVertical = true
-        view.showsVerticalScrollIndicator = true
+        view.showsVerticalScrollIndicator = false
         return view
     }()
     
