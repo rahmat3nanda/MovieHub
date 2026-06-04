@@ -14,7 +14,8 @@ let package = Package(
         .package(path: "../../Core/NetworkManager"),
         .package(path: "../../Presentation/DesignSystem"),
         .package(path: "../../Presentation/SharedUI"),
-        .package(path: "../../Foundation/UtilityKit")
+        .package(path: "../../Foundation/UtilityKit"),
+        .package(path: "../Movie")
     ],
     targets: [
         .target(
@@ -24,7 +25,8 @@ let package = Package(
                 "NetworkManager",
                 "DesignSystem",
                 "SharedUI",
-                "UtilityKit"
+                "UtilityKit",
+                "Movie"
             ]
         )
     ]

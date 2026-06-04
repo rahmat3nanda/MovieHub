@@ -70,7 +70,6 @@ final class MovieListPresenter: MovieListPresenterProtocol {
     }
     
     func movieSelected(_ movie: Movie) {
-        toastService.show(message: "Selected Movie: \(movie.title)", type: .success)
         router?.navigateToMovieDetails(for: movie)
     }
     

@@ -1,5 +1,6 @@
 import UIKit
 import DomainKit
+import Movie
 
 public protocol HomeRouterProtocol: AnyObject {
     static func createModule() -> HomeViewController
@@ -34,10 +35,13 @@ public final class HomeRouter: HomeRouterProtocol {
     }
     
     public func navigateToMovieDetails(for movie: Movie) {
-        // Navigation placeholder logic - currently handled via toast in presenter
+        let detailVC = MovieDetailRouter.createModule(for: movie)
+        detailVC.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(detailVC, animated: true)
     }
     
     public func navigateToSearch() {
         // Navigation placeholder logic - currently handled via toast in presenter
     }
 }
+

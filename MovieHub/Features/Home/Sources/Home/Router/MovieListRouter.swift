@@ -5,6 +5,7 @@
 
 import UIKit
 import DomainKit
+import Movie
 
 protocol MovieListRouterProtocol: AnyObject {
     static func createModule(for section: HomeSectionType) -> UIViewController
@@ -41,6 +42,9 @@ final class MovieListRouter: MovieListRouterProtocol {
     }
     
     func navigateToMovieDetails(for movie: Movie) {
-        // Navigation placeholder logic - currently handled via toast in presenter
+        let detailVC = MovieDetailRouter.createModule(for: movie)
+        detailVC.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
+
