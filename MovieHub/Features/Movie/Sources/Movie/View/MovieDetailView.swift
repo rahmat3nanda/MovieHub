@@ -328,12 +328,22 @@ public final class MovieDetailView: UIView {
 
     let appBar = MovieDetailAppBarView()
 
+    private let appBarBackground: UIView = {
+        let v = UIView()
+        v.backgroundColor = UIColor.background.withAlphaComponent(0.85)
+        return v
+    }()
+
+    private var backdropTopConstraint: NSLayoutConstraint?
+    private var backdropHeightConstraint: NSLayoutConstraint?
+
     // MARK: - Scroll & Content
 
     private let scrollView: UIScrollView = {
         let sv = UIScrollView()
         sv.showsVerticalScrollIndicator = false
         sv.alwaysBounceVertical = true
+        sv.contentInsetAdjustmentBehavior = .never
         return sv
     }()
 
@@ -378,6 +388,7 @@ public final class MovieDetailView: UIView {
         iv.clipsToBounds = true
         iv.layer.borderWidth = 2
         iv.layer.borderColor = UIColor.border.cgColor
+        iv.backgroundColor = .background
         return iv
     }()
 
@@ -554,6 +565,15 @@ public final class MovieDetailView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         backdropGradient.frame = backdropOverlay.bounds
+
+        let topPadding = safeAreaInsets.top + 56
+        if scrollView.contentInset.top != topPadding {
+            scrollView.contentInset = UIEdgeInsets(top: topPadding, left: 0, bottom: 0, right: 0)
+            scrollView.scrollIndicatorInsets = scrollView.contentInset
+
+            backdropTopConstraint?.constant = -topPadding
+            backdropHeightConstraint?.constant = 280 + topPadding
+        }
     }
 
     // MARK: - Setup UI
@@ -563,6 +583,7 @@ public final class MovieDetailView: UIView {
 
         // App bar
         addSubview(scrollView)
+        addSubview(appBarBackground)
         addSubview(appBar)
         addSubview(errorStack)
         addSubview(loadingIndicator)
@@ -579,6 +600,11 @@ public final class MovieDetailView: UIView {
         appBar.anchors.leading.pin()
         appBar.anchors.trailing.pin()
         appBar.anchors.height.equal(56)
+
+        appBarBackground.anchors.top.pin()
+        appBarBackground.anchors.leading.pin()
+        appBarBackground.anchors.trailing.pin()
+        appBarBackground.anchors.bottom.equal(appBar.anchors.bottom)
 
         scrollView.anchors.top.pin()
         scrollView.anchors.leading.pin()
@@ -606,10 +632,10 @@ public final class MovieDetailView: UIView {
         backdropImageView.addSubview(backdropOverlay)
         backdropOverlay.layer.addSublayer(backdropGradient)
 
-        backdropImageView.anchors.top.pin()
+        backdropTopConstraint = backdropImageView.anchors.top.pin()
         backdropImageView.anchors.leading.pin()
         backdropImageView.anchors.trailing.pin()
-        backdropImageView.anchors.height.equal(280)
+        backdropHeightConstraint = backdropImageView.anchors.height.equal(280)
 
         backdropOverlay.anchors.edges.pin()
 
@@ -709,6 +735,8 @@ public final class MovieDetailView: UIView {
         errorStack.isHidden = true
         scrollView.isHidden = false
 
+        contentView.hideSkeleton(recursive: true)
+
         // Backdrop
         if let backdrop = movie.backdropPath {
             backdropImageView.loadImage(from: "https://image.tmdb.org/t/p/w780\(backdrop)", placeholder: nil)
@@ -762,6 +790,26 @@ public final class MovieDetailView: UIView {
         case .loading:
             reviewsLoadingIndicator.startAnimating()
             noReviewsLabel.isHidden = true
+            reviewsStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+
+            // Add 3 dummy review skeleton cards
+            for i in 0..<3 {
+                let card = ReviewCardView()
+                let dummyDetails = MovieReviewAuthorDetails(name: "Author Name", username: "username", avatarPath: nil, rating: 8.0)
+                let dummyReview = MovieReview(
+                    id: "dummy_review_\(i)",
+                    author: "Review Author Name",
+                    authorDetails: dummyDetails,
+                    content: "This is a placeholder review content paragraph. " +
+                             "It will be covered by skeleton lines so it simulates the loaded review look.",
+                    createdAt: "2026-06-04",
+                    updatedAt: "2026-06-04",
+                    url: ""
+                )
+                card.configure(with: dummyReview)
+                reviewsStack.addArrangedSubview(card)
+                card.showSkeleton(recursive: true)
+            }
 
         case .loaded(let reviews):
             reviewsLoadingIndicator.stopAnimating()
@@ -807,14 +855,40 @@ public final class MovieDetailView: UIView {
     }
 
     func showLoadingState() {
-        scrollView.isHidden = true
+        scrollView.isHidden = false
         errorStack.isHidden = true
-        loadingIndicator.startAnimating()
+        loadingIndicator.stopAnimating()
+
+        // 1. Set placeholder texts to size the skeletons correctly
+        titleLabel.text = "Loading Movie Title Placeholder"
+        taglineLabel.text = "Loading tagline placeholder text that covers lines"
+        taglineLabel.isHidden = false
+        overviewLabel.text = "This is a loading overview placeholder paragraph. " +
+                             "It is long enough to cover multiple lines so that the skeleton block " +
+                             "resembles a text block."
+
+        // 2. Set placeholders for badges
+        ratingBadge.update(value: "0.0")
+        runtimeBadge.update(value: "120m")
+        yearBadge.update(value: "2026")
+
+        // 3. Clear backdrop/poster to trigger skeletons
+        backdropImageView.loadImage(from: nil)
+        posterImageView.loadImage(from: nil)
+
+        // 4. Hide/clear genre stack during loading
+        genreStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        let loadingTag = GenreTagView(name: "Genre Tag")
+        genreStack.addArrangedSubview(loadingTag)
+
+        // 5. Trigger skeleton layers recursively on contentView
+        contentView.showSkeleton(recursive: true)
     }
 
     func showErrorState(_ error: Error) {
         scrollView.isHidden = true
         loadingIndicator.stopAnimating()
+        contentView.hideSkeleton(recursive: true)
         errorLabel.text = error.localizedDescription
         errorStack.isHidden = false
     }
