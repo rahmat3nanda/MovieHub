@@ -8,12 +8,16 @@ public final class RemoteImageView: UIImageView {
         super.init(frame: .zero)
         contentMode = .scaleAspectFill
         clipsToBounds = true
+        backgroundColor = .systemGray6
+        tintColor = .systemGray3
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         contentMode = .scaleAspectFill
         clipsToBounds = true
+        backgroundColor = .systemGray6
+        tintColor = .systemGray3
     }
     
     /// Loads an image asynchronously from a URL string using Kingfisher.
@@ -33,8 +37,6 @@ public final class RemoteImageView: UIImageView {
         
         // Show skeleton loader on the UIImageView itself
         showSkeleton(
-            baseColor: .systemGray6,
-            highlightColor: .systemGray5,
             cornerRadius: layer.cornerRadius,
             recursive: false
         )

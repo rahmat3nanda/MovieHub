@@ -1,5 +1,6 @@
 import UIKit
 import UtilityKit
+import DesignSystem
 
 public final class SkeletonView: UIView {
     private let gradientLayer = CAGradientLayer()
@@ -49,6 +50,14 @@ public extension UIView {
         static var isSkeletonableKey = "isSkeletonableKey"
     }
     
+    private static var defaultBaseColor: UIColor {
+        return UIColor(white: 0.12, alpha: 1.0)
+    }
+
+    private static var defaultHighlightColor: UIColor {
+        return UIColor(white: 0.22, alpha: 1.0)
+    }
+    
     var isSkeletonable: Bool {
         get {
             return objc_getAssociatedObject(self, &AssociatedKeys.isSkeletonableKey) as? Bool ?? true
@@ -60,22 +69,25 @@ public extension UIView {
     
     /// Shows a skeleton view with a shimmering effect on the view.
     /// - Parameters:
-    ///   - baseColor: The base background color of the skeleton. Defaults to a subtle system gray.
-    ///   - highlightColor: The highlight color of the shimmer gradient. Defaults to a lighter system gray.
+    ///   - baseColor: The base background color of the skeleton.
+    ///   - highlightColor: The highlight color of the shimmer gradient.
     ///   - cornerRadius: The corner radius of the skeleton view. Defaults to 8.
-    ///   - recursive: If true, searches all leaf subviews (like UILabel, UIImageView, UIButton) and overlays skeletons on them individually.
+    ///   - recursive: If true, searches all leaf subviews and overlays skeletons on them.
     func showSkeleton(
-        baseColor: UIColor = .systemGray6,
-        highlightColor: UIColor = .systemGray5,
+        baseColor: UIColor? = nil,
+        highlightColor: UIColor? = nil,
         cornerRadius: CGFloat = 8,
         recursive: Bool = false
     ) {
+        let resolvedBase = baseColor ?? Self.defaultBaseColor
+        let resolvedHighlight = highlightColor ?? Self.defaultHighlightColor
+
         if recursive {
             let leaves = findSkeletonableViews(in: self)
             for leaf in leaves {
                 leaf.showSkeleton(
-                    baseColor: baseColor,
-                    highlightColor: highlightColor,
+                    baseColor: resolvedBase,
+                    highlightColor: resolvedHighlight,
                     cornerRadius: cornerRadius,
                     recursive: false
                 )
@@ -87,8 +99,8 @@ public extension UIView {
         hideSkeleton(recursive: false)
         
         let skeleton = SkeletonView(
-            baseColor: baseColor,
-            highlightColor: highlightColor,
+            baseColor: resolvedBase,
+            highlightColor: resolvedHighlight,
             cornerRadius: cornerRadius
         )
         
@@ -131,14 +143,19 @@ public extension UIView {
         guard view.isSkeletonable else { return [] }
         
         var leaves: [UIView] = []
+        let activeSubviews = view.subviews.filter { !($0 is SkeletonView) }
         
-        // Standard view elements that represent final leaf nodes for content
-        if view is UILabel || view is UIImageView || view is UIButton {
+        // UIStackView and UIScrollView are structural containers, always recurse their subviews
+        if view is UIStackView || view is UIScrollView {
+            for subview in activeSubviews {
+                leaves.append(contentsOf: findSkeletonableViews(in: subview))
+            }
+        } else if view is UILabel || view is UIImageView || view is UIButton {
             leaves.append(view)
-        } else if view.subviews.isEmpty {
+        } else if activeSubviews.isEmpty {
             leaves.append(view)
         } else {
-            for subview in view.subviews where !(subview is SkeletonView) {
+            for subview in activeSubviews {
                 leaves.append(contentsOf: findSkeletonableViews(in: subview))
             }
         }
