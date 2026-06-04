@@ -14,6 +14,7 @@ public final class MovieItemCell: UICollectionViewCell {
         view.layer.cornerRadius = 16
         view.layer.masksToBounds = true
         view.backgroundColor = .systemGray6.withAlphaComponent(0.2)
+        view.layer.borderWidth = 1
         return view
     }()
     
@@ -24,6 +25,7 @@ public final class MovieItemCell: UICollectionViewCell {
     
     private let gradientView: UIView = {
         let view = UIView()
+        view.isSkeletonable = false
         return view
     }()
     
@@ -115,6 +117,7 @@ public final class MovieItemCell: UICollectionViewCell {
     public override func layoutSubviews() {
         super.layoutSubviews()
         gradientLayer.frame = gradientView.bounds
+        containerView.layer.borderColor = UIColor.border.cgColor
     }
     
     // MARK: - Setup Views

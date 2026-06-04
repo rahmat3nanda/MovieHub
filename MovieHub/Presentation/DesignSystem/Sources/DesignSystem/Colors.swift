@@ -10,4 +10,9 @@ public extension UIColor {
     static var secondary: UIColor {
         return UIColor(named: "Secondary", in: Bundle.module, compatibleWith: nil) ?? .white
     }
+    
+    /// `Border` = white alpha 0.15
+    static var border: UIColor {
+        return UIColor(named: "Border", in: Bundle.module, compatibleWith: nil) ?? .separator
+    }
 }

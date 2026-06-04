@@ -28,12 +28,15 @@ public protocol HomePresenterProtocol: AnyObject {
     func retryTapped(for section: HomeSectionType)
     func seeAllTapped(for section: HomeSectionType)
     func movieSelected(_ movie: Movie)
+    func pullToRefresh()
 }
 
 public final class HomePresenter: HomePresenterProtocol {
     public weak var view: HomeViewProtocol?
     public var interactor: HomeInteractorInputProtocol?
     public var router: HomeRouterProtocol?
+    
+    private var activeRequestsCount = 0
     
     @Inject private var toastService: ToastService
     
@@ -48,6 +51,16 @@ public final class HomePresenter: HomePresenterProtocol {
     }
     
     public func viewDidLoad() {
+        loadData()
+    }
+    
+    public func pullToRefresh() {
+        loadData()
+    }
+    
+    private func loadData() {
+        activeRequestsCount = 4
+        
         view?.showNowPlayingState(.loading)
         view?.showPopularState(.loading)
         view?.showTopRatedState(.loading)
@@ -57,6 +70,14 @@ public final class HomePresenter: HomePresenterProtocol {
         interactor?.fetchPopular()
         interactor?.fetchTopRated()
         interactor?.fetchUpcoming()
+    }
+    
+    private func requestCompleted() {
+        activeRequestsCount -= 1
+        if activeRequestsCount <= 0 {
+            activeRequestsCount = 0
+            view?.endRefreshing()
+        }
     }
     
     public func retryTapped(for section: HomeSectionType) {
@@ -102,6 +123,7 @@ extension HomePresenter: HomeInteractorOutputProtocol {
         case .failure(let error):
             view?.showNowPlayingState(.error(error))
         }
+        requestCompleted()
     }
     
     public func didFetchPopular(with result: Result<[Movie], Error>) {
@@ -115,6 +137,7 @@ extension HomePresenter: HomeInteractorOutputProtocol {
         case .failure(let error):
             view?.showPopularState(.error(error))
         }
+        requestCompleted()
     }
     
     public func didFetchTopRated(with result: Result<[Movie], Error>) {
@@ -128,6 +151,7 @@ extension HomePresenter: HomeInteractorOutputProtocol {
         case .failure(let error):
             view?.showTopRatedState(.error(error))
         }
+        requestCompleted()
     }
     
     public func didFetchUpcoming(with result: Result<[Movie], Error>) {
@@ -141,5 +165,6 @@ extension HomePresenter: HomeInteractorOutputProtocol {
         case .failure(let error):
             view?.showUpcomingState(.error(error))
         }
+        requestCompleted()
     }
 }

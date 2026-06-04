@@ -17,7 +17,6 @@ public final class MovieListDataSourceDecorator: MovieListDataSource {
             try? await local.savePopular(remoteMovies)
             return remoteMovies
         } catch {
-            printDebug("woiii", error)
             return try await local.getPopular(request: request)
         }
     }

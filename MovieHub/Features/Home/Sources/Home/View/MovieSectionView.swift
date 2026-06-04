@@ -2,6 +2,7 @@ import UIKit
 import UtilityKit
 import DomainKit
 import SharedUI
+import DesignSystem
 
 public enum SectionState {
     case loading
@@ -37,7 +38,7 @@ public final class MovieSectionView: UIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .label
+        label.textColor = .white
         label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
@@ -46,7 +47,7 @@ public final class MovieSectionView: UIView {
         let button = UIButton(type: .system)
         button.setTitle("See All", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
-        button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitleColor(.secondary, for: .normal)
         button.addTarget(self, action: #selector(seeAllTapped), for: .touchUpInside)
         return button
     }()

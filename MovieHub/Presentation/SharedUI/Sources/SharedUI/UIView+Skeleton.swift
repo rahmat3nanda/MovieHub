@@ -46,6 +46,16 @@ public final class SkeletonView: UIView {
 public extension UIView {
     private struct AssociatedKeys {
         static var skeletonViewKey = "skeletonViewKey"
+        static var isSkeletonableKey = "isSkeletonableKey"
+    }
+    
+    public var isSkeletonable: Bool {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.isSkeletonableKey) as? Bool ?? true
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.isSkeletonableKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
     }
     
     /// Shows a skeleton view with a shimmering effect on the view.
@@ -118,6 +128,8 @@ public extension UIView {
     }
     
     private func findSkeletonableViews(in view: UIView) -> [UIView] {
+        guard view.isSkeletonable else { return [] }
+        
         var leaves: [UIView] = []
         
         // Standard view elements that represent final leaf nodes for content

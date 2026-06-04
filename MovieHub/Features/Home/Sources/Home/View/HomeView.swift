@@ -32,6 +32,10 @@ final class HomeView: UIView {
     let topRatedSection = MovieSectionView(title: "Top Rated")
     let upcomingSection = MovieSectionView(title: "Upcoming")
     
+    // Pull to Refresh
+    let refreshControl = UIRefreshControl()
+    var onRefresh: (() -> Void)?
+    
     // MARK: - Initializer
     
     override init(frame: CGRect) {
@@ -49,6 +53,10 @@ fileprivate extension HomeView {
     func configUI() {
         backgroundColor = .background
         
+        // Setup Refresh Control
+        refreshControl.addTarget(self, action: #selector(refreshTriggered), for: .valueChanged)
+        scrollView.refreshControl = refreshControl
+        
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(stackView)
@@ -65,5 +73,9 @@ fileprivate extension HomeView {
         stackView.addArrangedSubview(popularSection)
         stackView.addArrangedSubview(topRatedSection)
         stackView.addArrangedSubview(upcomingSection)
+    }
+    
+    @objc private func refreshTriggered() {
+        onRefresh?()
     }
 }

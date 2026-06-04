@@ -6,6 +6,7 @@ public protocol HomeViewProtocol: AnyObject {
     func showPopularState(_ state: SectionState)
     func showTopRatedState(_ state: SectionState)
     func showUpcomingState(_ state: SectionState)
+    func endRefreshing()
 }
 
 public final class HomeViewController: UIViewController {
@@ -79,6 +80,11 @@ public final class HomeViewController: UIViewController {
         homeView.upcomingSection.onSelectMovie = { [weak self] movie in
             self?.presenter?.movieSelected(movie)
         }
+        
+        // Pull to Refresh Listener
+        homeView.onRefresh = { [weak self] in
+            self?.presenter?.pullToRefresh()
+        }
     }
 }
 
@@ -107,6 +113,12 @@ extension HomeViewController: HomeViewProtocol {
     public func showUpcomingState(_ state: SectionState) {
         DispatchQueue.main.async { [weak self] in
             self?.homeView.upcomingSection.state = state
+        }
+    }
+    
+    public func endRefreshing() {
+        DispatchQueue.main.async { [weak self] in
+            self?.homeView.refreshControl.endRefreshing()
         }
     }
 }
