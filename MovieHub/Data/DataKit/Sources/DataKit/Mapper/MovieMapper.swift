@@ -64,7 +64,7 @@ extension ProductionCompanyDTO {
 extension ProductionCountryDTO {
     public func toDomain() -> ProductionCountry {
         return ProductionCountry(
-            iso3166_1: iso31661,
+            iso31661: iso31661,
             name: name
         )
     }
@@ -74,7 +74,7 @@ extension SpokenLanguageDTO {
     public func toDomain() -> SpokenLanguage {
         return SpokenLanguage(
             englishName: englishName,
-            iso639_1: iso6391,
+            iso6391: iso6391,
             name: name
         )
     }
