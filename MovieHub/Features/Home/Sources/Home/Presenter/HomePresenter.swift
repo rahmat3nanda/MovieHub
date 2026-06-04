@@ -99,7 +99,6 @@ public final class HomePresenter: HomePresenterProtocol {
     }
     
     public func seeAllTapped(for section: HomeSectionType) {
-        toastService.show(message: "See All tapped for \(section.categoryName)", type: .info)
         router?.navigateToSeeAll(for: section)
     }
     
@@ -109,7 +108,7 @@ public final class HomePresenter: HomePresenterProtocol {
     }
     
     public func searchTapped() {
-        toastService.show(message: "Search tapped - Route placeholder triggered", type: .info)
+        toastService.show(message: "Search under development", type: .info)
         router?.navigateToSearch()
     }
 }

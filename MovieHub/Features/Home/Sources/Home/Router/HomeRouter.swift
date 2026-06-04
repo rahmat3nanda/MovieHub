@@ -28,7 +28,9 @@ public final class HomeRouter: HomeRouterProtocol {
     }
     
     public func navigateToSeeAll(for section: HomeSectionType) {
-        // Navigation placeholder logic - currently handled via toast in presenter
+        let movieListView = MovieListRouter.createModule(for: section)
+        movieListView.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(movieListView, animated: true)
     }
     
     public func navigateToMovieDetails(for movie: Movie) {
