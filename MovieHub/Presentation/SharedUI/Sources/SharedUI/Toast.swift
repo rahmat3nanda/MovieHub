@@ -1,10 +1,3 @@
-//
-//  Toast.swift
-//  SharedUI
-//
-//  Created by Antigravity on 04/06/26.
-//
-
 import UIKit
 import UtilityKit
 

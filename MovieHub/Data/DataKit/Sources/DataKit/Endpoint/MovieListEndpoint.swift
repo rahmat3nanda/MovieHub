@@ -16,10 +16,10 @@ public enum MovieListEndpoint: Endpoint {
 
     public var path: String {
         switch self {
-        case .nowPlaying: "3/discover/movie/now_playing"
-        case .popular: "3/discover/movie/popular"
-        case .topRated: "3/discover/movie/top_rated"
-        case .upcoming: "3/discover/movie/upcoming"
+        case .nowPlaying: "3/movie/now_playing"
+        case .popular: "3/movie/popular"
+        case .topRated: "3/movie/top_rated"
+        case .upcoming: "3/movie/upcoming"
         }
     }
     

@@ -1,5 +1,6 @@
 import Foundation
 import DomainKit
+import UtilityKit
 
 public final class MovieListDataSourceDecorator: MovieListDataSource {
     private let remote: MovieListDataSource
@@ -16,6 +17,7 @@ public final class MovieListDataSourceDecorator: MovieListDataSource {
             try? await local.savePopular(remoteMovies)
             return remoteMovies
         } catch {
+            printDebug("woiii", error)
             return try await local.getPopular(request: request)
         }
     }

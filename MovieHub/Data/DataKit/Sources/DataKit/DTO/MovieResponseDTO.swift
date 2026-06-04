@@ -4,24 +4,24 @@ public struct MovieResponseDTO: Codable {
     public let adult: Bool
     public let backdropPath: String?
     public let belongsToCollection: CollectionDTO?
-    public let budget: Int64
-    public let genres: [GenreDTO]
+    public let budget: Int64?
+    public let genres: [GenreDTO]?
     public let homepage: String?
     public let id: Int
     public let imdbId: String?
-    public let originCountry: [String]
+    public let originCountry: [String]?
     public let originalLanguage: String
     public let originalTitle: String
     public let overview: String
     public let popularity: Double
     public let posterPath: String?
-    public let productionCompanies: [ProductionCompanyDTO]
-    public let productionCountries: [ProductionCountryDTO]
+    public let productionCompanies: [ProductionCompanyDTO]?
+    public let productionCountries: [ProductionCountryDTO]?
     public let releaseDate: String
-    public let revenue: Int64
+    public let revenue: Int64?
     public let runtime: Int?
-    public let spokenLanguages: [SpokenLanguageDTO]
-    public let status: String
+    public let spokenLanguages: [SpokenLanguageDTO]?
+    public let status: String?
     public let tagline: String?
     public let title: String
     public let video: Bool
@@ -81,7 +81,7 @@ public struct ProductionCompanyDTO: Codable {
     public let id: Int
     public let logoPath: String?
     public let name: String
-    public let originCountry: String
+    public let originCountry: String?
 
     enum CodingKeys: String, CodingKey {
         case id

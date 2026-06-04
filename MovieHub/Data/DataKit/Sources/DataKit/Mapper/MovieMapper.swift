@@ -14,7 +14,7 @@ extension MovieResponseDTO {
             voteAverage: voteAverage,
             voteCount: voteCount,
             popularity: popularity,
-            genres: genres.map { $0.toDomain() },
+            genres: genres?.map { $0.toDomain() },
             runtime: runtime,
             tagline: tagline,
             budget: budget,
@@ -26,9 +26,9 @@ extension MovieResponseDTO {
             originalLanguage: originalLanguage,
             originCountry: originCountry,
             belongsToCollection: belongsToCollection?.toDomain(),
-            productionCompanies: productionCompanies.map { $0.toDomain() },
-            productionCountries: productionCountries.map { $0.toDomain() },
-            spokenLanguages: spokenLanguages.map { $0.toDomain() }
+            productionCompanies: productionCompanies?.map { $0.toDomain() },
+            productionCountries: productionCountries?.map { $0.toDomain() },
+            spokenLanguages: spokenLanguages?.map { $0.toDomain() }
         )
     }
 }

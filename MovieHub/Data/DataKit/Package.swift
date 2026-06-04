@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "DataKit",
     platforms: [
-        .iOS(.v13),
+        .iOS(.v15),
         .macOS(.v12)
     ],
     products: [

@@ -11,22 +11,22 @@ public struct Movie: Equatable, Identifiable {
     public let voteAverage: Double
     public let voteCount: Int
     public let popularity: Double
-    public let genres: [Genre]
+    public let genres: [Genre]?
     public let runtime: Int?
     public let tagline: String?
-    public let budget: Int64
-    public let revenue: Int64
+    public let budget: Int64?
+    public let revenue: Int64?
     public let homepage: String?
-    public let status: String
+    public let status: String?
     public let video: Bool
     public let adult: Bool
     public let originalLanguage: String
-    public let originCountry: [String]
+    public let originCountry: [String]?
     public let belongsToCollection: MovieCollection?
-    public let productionCompanies: [ProductionCompany]
-    public let productionCountries: [ProductionCountry]
-    public let spokenLanguages: [SpokenLanguage]
-    
+    public let productionCompanies: [ProductionCompany]?
+    public let productionCountries: [ProductionCountry]?
+    public let spokenLanguages: [SpokenLanguage]?
+
     public init(
         id: Int,
         title: String,
@@ -38,21 +38,21 @@ public struct Movie: Equatable, Identifiable {
         voteAverage: Double,
         voteCount: Int,
         popularity: Double,
-        genres: [Genre],
+        genres: [Genre]?,
         runtime: Int?,
         tagline: String?,
-        budget: Int64,
-        revenue: Int64,
+        budget: Int64?,
+        revenue: Int64?,
         homepage: String?,
-        status: String,
+        status: String?,
         video: Bool,
         adult: Bool,
         originalLanguage: String,
-        originCountry: [String],
+        originCountry: [String]?,
         belongsToCollection: MovieCollection?,
-        productionCompanies: [ProductionCompany],
-        productionCountries: [ProductionCountry],
-        spokenLanguages: [SpokenLanguage]
+        productionCompanies: [ProductionCompany]?,
+        productionCountries: [ProductionCountry]?,
+        spokenLanguages: [SpokenLanguage]?
     ) {
         self.id = id
         self.title = title
@@ -110,9 +110,9 @@ public struct ProductionCompany: Equatable, Identifiable {
     public let id: Int
     public let logoPath: String?
     public let name: String
-    public let originCountry: String
-    
-    public init(id: Int, logoPath: String?, name: String, originCountry: String) {
+    public let originCountry: String?
+
+    public init(id: Int, logoPath: String?, name: String, originCountry: String?) {
         self.id = id
         self.logoPath = logoPath
         self.name = name

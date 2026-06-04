@@ -1,10 +1,3 @@
-//
-//  View+Skeleton.swift
-//  SharedUI
-//
-//  Created by Antigravity on 04/06/26.
-//
-
 import SwiftUI
 
 @available(iOS 14.0, *)

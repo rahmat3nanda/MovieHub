@@ -1,6 +1,7 @@
 import UIKit
 import DesignSystem
 import SharedUI
+import Home
 
 public final class MainTabBarController: UITabBarController {
     
@@ -25,8 +26,8 @@ public final class MainTabBarController: UITabBarController {
     }
     
     private func setupTabs() {
-        // Tab 1: Home
-        let homeVC = DevelopmentViewController()
+        // Tab 1: Home (VIPER module assembly)
+        let homeVC = HomeRouter.createModule()
         let homeNav = UINavigationController(rootViewController: homeVC)
         homeNav.setNavigationBarHidden(true, animated: false)
         homeNav.tabBarItem = UITabBarItem(

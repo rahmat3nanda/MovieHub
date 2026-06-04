@@ -1,10 +1,3 @@
-//
-//  NetworkError.swift
-//  MovieHub
-//
-//  Created by Antigravity on 03/06/26.
-//
-
 import Foundation
 
 public enum NetworkError: Error, LocalizedError {

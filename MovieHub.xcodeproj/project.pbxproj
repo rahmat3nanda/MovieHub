@@ -14,6 +14,8 @@
 		AF8A63432FD09DC4002B6A59 /* SharedUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF8A63422FD09DC4002B6A59 /* SharedUI */; };
 		AF8A63452FD09E08002B6A59 /* UtilityKit in Frameworks */ = {isa = PBXBuildFile; productRef = AF8A63442FD09E08002B6A59 /* UtilityKit */; };
 		AFE4B3062FD16A93001B3589 /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = AFE4B3052FD16A93001B3589 /* Persistence */; };
+		AFE4B3082FD16A93001B3589 /* DomainKit in Frameworks */ = {isa = PBXBuildFile; productRef = AFE4B3072FD16A93001B3589 /* DomainKit */; };
+		AFE4B30A2FD16A93001B3589 /* DataKit in Frameworks */ = {isa = PBXBuildFile; productRef = AFE4B3092FD16A93001B3589 /* DataKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 				AF65CD342FD0933A00C603AB /* DesignSystem in Frameworks */,
 				AF65CD362FD0936400C603AB /* NetworkManager in Frameworks */,
 				AF21649B2FD1775D0072DB59 /* Home in Frameworks */,
+				AFE4B3082FD16A93001B3589 /* DomainKit in Frameworks */,
+				AFE4B30A2FD16A93001B3589 /* DataKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +433,14 @@
 		AFE4B3052FD16A93001B3589 /* Persistence */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Persistence;
+		};
+		AFE4B3072FD16A93001B3589 /* DomainKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DomainKit;
+		};
+		AFE4B3092FD16A93001B3589 /* DataKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DataKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

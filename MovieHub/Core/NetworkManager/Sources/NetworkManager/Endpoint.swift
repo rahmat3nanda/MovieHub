@@ -1,10 +1,3 @@
-//
-//  Endpoint.swift
-//  MovieHub
-//
-//  Created by Antigravity on 03/06/26.
-//
-
 import Constants
 import Foundation
 
