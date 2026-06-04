@@ -5,6 +5,7 @@
 //  Created by Antigravity on 03/06/26.
 //
 
+import Constants
 import Foundation
 
 public protocol Endpoint {
@@ -19,11 +20,15 @@ public protocol Endpoint {
 
 public extension Endpoint {
     var baseURL: URL {
-        URL(string: "https://api.themoviedb.org/")!
+        // swiftlint:disable:next force_unwrapping
+        URL(string: APIConstants.baseURL)!
     }
 
     var headers: [String: String]? {
-        ["accept": "application/json"]
+        [
+            "accept": "application/json",
+            "Authorization": "Bearer \(APIConstants.apiKey)"
+        ]
     }
 
     var queryParameters: [String: Any]? {
