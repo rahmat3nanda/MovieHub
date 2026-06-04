@@ -11,9 +11,28 @@ public protocol Endpoint {
     var baseURL: URL { get }
     var path: String { get }
     var method: HTTPMethod { get }
+
     var headers: [String: String]? { get }
     var queryParameters: [String: Any]? { get }
     var bodyParameters: [String: Any]? { get }
+}
+
+public extension Endpoint {
+    var baseURL: URL {
+        URL(string: "https://api.themoviedb.org/")!
+    }
+
+    var headers: [String: String]? {
+        ["accept": "application/json"]
+    }
+
+    var queryParameters: [String: Any]? {
+        nil
+    }
+
+    var bodyParameters: [String: Any]? {
+        nil
+    }
 }
 
 extension Endpoint {
