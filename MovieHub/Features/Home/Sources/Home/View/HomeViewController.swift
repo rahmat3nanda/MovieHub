@@ -85,6 +85,11 @@ public final class HomeViewController: UIViewController {
         homeView.onRefresh = { [weak self] in
             self?.presenter?.pullToRefresh()
         }
+        
+        // Search Action Listener
+        homeView.appBar.onSearchTapped = { [weak self] in
+            self?.presenter?.searchTapped()
+        }
     }
 }
 

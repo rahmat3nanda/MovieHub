@@ -36,6 +36,9 @@ final class HomeView: UIView {
     let refreshControl = UIRefreshControl()
     var onRefresh: (() -> Void)?
     
+    // App Bar
+    let appBar = HomeAppBarView()
+    
     // MARK: - Initializer
     
     override init(frame: CGRect) {
@@ -57,12 +60,22 @@ fileprivate extension HomeView {
         refreshControl.addTarget(self, action: #selector(refreshTriggered), for: .valueChanged)
         scrollView.refreshControl = refreshControl
         
+        addSubview(appBar)
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(stackView)
         
         // Setup Auto Layout constraints using UtilityKit anchors
-        scrollView.anchors.edges.pin()
+        appBar.anchors.top.pin(to: safeAreaLayoutGuide)
+        appBar.anchors.leading.pin()
+        appBar.anchors.trailing.pin()
+        appBar.anchors.height.equal(56)
+        
+        scrollView.anchors.top.spacing(0, to: appBar.anchors.bottom)
+        scrollView.anchors.leading.pin()
+        scrollView.anchors.trailing.pin()
+        scrollView.anchors.bottom.pin()
+        
         contentView.anchors.edges.pin()
         contentView.anchors.width.equal(scrollView.anchors.width)
         

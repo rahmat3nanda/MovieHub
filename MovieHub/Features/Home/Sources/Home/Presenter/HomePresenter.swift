@@ -29,6 +29,7 @@ public protocol HomePresenterProtocol: AnyObject {
     func seeAllTapped(for section: HomeSectionType)
     func movieSelected(_ movie: Movie)
     func pullToRefresh()
+    func searchTapped()
 }
 
 public final class HomePresenter: HomePresenterProtocol {
@@ -105,6 +106,11 @@ public final class HomePresenter: HomePresenterProtocol {
     public func movieSelected(_ movie: Movie) {
         toastService.show(message: "Selected Movie: \(movie.title)", type: .success)
         router?.navigateToMovieDetails(for: movie)
+    }
+    
+    public func searchTapped() {
+        toastService.show(message: "Search tapped - Route placeholder triggered", type: .info)
+        router?.navigateToSearch()
     }
 }
 

@@ -5,6 +5,7 @@ public protocol HomeRouterProtocol: AnyObject {
     static func createModule() -> HomeViewController
     func navigateToSeeAll(for section: HomeSectionType)
     func navigateToMovieDetails(for movie: Movie)
+    func navigateToSearch()
 }
 
 public final class HomeRouter: HomeRouterProtocol {
@@ -31,6 +32,10 @@ public final class HomeRouter: HomeRouterProtocol {
     }
     
     public func navigateToMovieDetails(for movie: Movie) {
+        // Navigation placeholder logic - currently handled via toast in presenter
+    }
+    
+    public func navigateToSearch() {
         // Navigation placeholder logic - currently handled via toast in presenter
     }
 }
