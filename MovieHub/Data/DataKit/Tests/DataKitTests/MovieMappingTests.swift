@@ -206,3 +206,4 @@ final class MovieMappingTests: XCTestCase {
         XCTAssertEqual(movie.voteCount, 22061)
     }
 }
+// swiftlint:enable function_body_length line_length

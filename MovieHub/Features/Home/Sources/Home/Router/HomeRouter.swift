@@ -44,4 +44,3 @@ public final class HomeRouter: HomeRouterProtocol {
         // Navigation placeholder logic - currently handled via toast in presenter
     }
 }
-

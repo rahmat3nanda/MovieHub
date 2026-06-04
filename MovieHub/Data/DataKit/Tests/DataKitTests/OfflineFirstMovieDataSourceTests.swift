@@ -2,11 +2,12 @@ import XCTest
 import DomainKit
 @testable import DataKit
 
-// swiftlint:disable:this function_body_length line_length
 final class OfflineFirstMovieDataSourceTests: XCTestCase {
     
     private final class MockMovieDataSource: MovieListDataSource {
-        var result: Result<MovieListResponseDTO, Error> = .success(MovieListResponseDTO(dates: nil, page: 1, results: [], totalPages: 0, totalResults: 0))
+        var result: Result<MovieListResponseDTO, Error> = .success(
+            MovieListResponseDTO(dates: nil, page: 1, results: [], totalPages: 0, totalResults: 0)
+        )
         var callCount = 0
         
         func getPopular(request: MovieListRequest) async throws -> MovieListResponseDTO {

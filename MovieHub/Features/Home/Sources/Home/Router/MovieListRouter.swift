@@ -47,4 +47,3 @@ final class MovieListRouter: MovieListRouterProtocol {
         viewController?.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
-
