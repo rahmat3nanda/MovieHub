@@ -9,6 +9,7 @@ import UIKit
 import UtilityKit
 import DomainKit
 import DesignSystem
+import Kingfisher
 
 public final class MovieItemCell: UICollectionViewCell {
     public static let reuseIdentifier = "MovieItemCell"
@@ -190,6 +191,10 @@ public final class MovieItemCell: UICollectionViewCell {
             trendIcon.alpha = 0
             gradientView.alpha = 0
             
+            // Cancel any pending Kingfisher download task and clear the image
+            posterView.kf.cancelDownloadTask()
+            posterView.image = nil
+            
             // Show skeleton recursively on all leaf content elements
             containerView.showSkeleton(recursive: true)
         } else {
@@ -218,10 +223,17 @@ public final class MovieItemCell: UICollectionViewCell {
             let percentage = min(100, Int(movie.voteAverage * 11))
             trendLabel.text = "\(percentage)%"
             
-            // Fetch and cache poster image
-            if let posterPath = movie.posterPath {
-                let posterURL = "https://image.tmdb.org/t/p/w500\(posterPath)"
-                posterView.loadImage(from: posterURL)
+            // Fetch and cache poster image using Kingfisher
+            if let posterPath = movie.posterPath,
+               let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") {
+                posterView.kf.setImage(
+                    with: url,
+                    placeholder: UIImage(systemName: "film"),
+                    options: [
+                        .transition(.fade(0.2)),
+                        .cacheOriginalImage
+                    ]
+                )
             } else {
                 posterView.image = UIImage(systemName: "film")
                 posterView.tintColor = .systemGray4
