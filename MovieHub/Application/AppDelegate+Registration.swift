@@ -19,6 +19,7 @@ extension AppDelegate {
         DIContainer.shared.register(ToastService.self, dependency: DefaultToastService())
 
         registerMovieList()
+        registerMovies()
     }
 }
 
@@ -35,5 +36,19 @@ private extension AppDelegate {
         DIContainer.shared.register(GetPopularMoviesUseCase.self, dependency: GetPopularMoviesUseCase(repository: repository))
         DIContainer.shared.register(GetTopRatedMoviesUseCase.self, dependency: GetTopRatedMoviesUseCase(repository: repository))
         DIContainer.shared.register(GetUpcomingMoviesUseCase.self, dependency: GetUpcomingMoviesUseCase(repository: repository))
+    }
+}
+
+// MARK: - Movies
+private extension AppDelegate {
+    func registerMovies() {
+        let remote = DefaultMovieRemoteDataSource()
+        let local = DefaultMovieLocalDataSource()
+        let decorator = MovieDataSourceDecorator(remote: remote, local: local)
+        let repository = DefaultMovieRepository(dataSource: decorator)
+
+        DIContainer.shared.register(MovieRepository.self, dependency: repository)
+        DIContainer.shared.register(GetMovieDetailUseCase.self, dependency: GetMovieDetailUseCase(repository: repository))
+        DIContainer.shared.register(GetMovieReviewsUseCase.self, dependency: GetMovieReviewsUseCase(repository: repository))
     }
 }
