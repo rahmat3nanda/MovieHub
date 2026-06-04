@@ -40,6 +40,16 @@ excluded:
   - ApplicationTests
   - MovieHub/Data/DataKit/.build
   - MovieHub/Domain/DomainKit/.build
+  - MovieHub/Features/Home/.build
+  - MovieHub/Features/Discover/.build
+  - MovieHub/Features/Profile/.build
+  - MovieHub/Presentation/SharedUI/.build
+  - MovieHub/Presentation/DesignSystem/.build
+  - MovieHub/Core/DIContainer/.build
+  - MovieHub/Core/NetworkManager/.build
+  - MovieHub/Core/Persistence/.build
+  - MovieHub/Core/Constants/.build
+  - MovieHub/Foundation/UtilityKit/.build
 
 # -----------------------------------------------------------------------------
 # Rule Customizations
