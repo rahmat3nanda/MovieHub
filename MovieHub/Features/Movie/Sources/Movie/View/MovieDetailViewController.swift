@@ -27,10 +27,10 @@ public final class MovieDetailViewController: UIViewController {
     var presenter: MovieDetailPresenterProtocol?
 
     private var movieDetailView: MovieDetailView {
-        guard let v = view as? MovieDetailView else {
+        guard let customView = view as? MovieDetailView else {
             fatalError("Expected view of type MovieDetailView")
         }
-        return v
+        return customView
     }
 
     public override func loadView() {
