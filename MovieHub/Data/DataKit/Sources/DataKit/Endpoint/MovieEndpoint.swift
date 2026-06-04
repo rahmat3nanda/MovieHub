@@ -17,4 +17,13 @@ public enum MovieEndpoint: Endpoint {
         default: .get
         }
     }
+
+    public var queryParameters: [String: Any]? {
+        switch self {
+        case .detail:
+            return nil
+        case let .reviews(request):
+            return ["page": request.page]
+        }
+    }
 }

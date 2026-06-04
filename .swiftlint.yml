@@ -41,6 +41,7 @@ excluded:
   - MovieHub/Data/DataKit/.build
   - MovieHub/Domain/DomainKit/.build
   - MovieHub/Features/Home/.build
+  - MovieHub/Features/Movie/.build
   - MovieHub/Features/Discover/.build
   - MovieHub/Features/Profile/.build
   - MovieHub/Presentation/SharedUI/.build
