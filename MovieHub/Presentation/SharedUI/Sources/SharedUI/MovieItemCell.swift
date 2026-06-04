@@ -24,10 +24,8 @@ public final class MovieItemCell: UICollectionViewCell {
         return view
     }()
     
-    private let posterView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
+    private let posterView: RemoteImageView = {
+        let imageView = RemoteImageView()
         return imageView
     }()
     
@@ -191,9 +189,8 @@ public final class MovieItemCell: UICollectionViewCell {
             trendIcon.alpha = 0
             gradientView.alpha = 0
             
-            // Cancel any pending Kingfisher download task and clear the image
-            posterView.kf.cancelDownloadTask()
-            posterView.image = nil
+            // Clear poster view and cancel any pending downloads
+            posterView.loadImage(from: nil)
             
             // Show skeleton recursively on all leaf content elements
             containerView.showSkeleton(recursive: true)
@@ -223,21 +220,12 @@ public final class MovieItemCell: UICollectionViewCell {
             let percentage = min(100, Int(movie.voteAverage * 11))
             trendLabel.text = "\(percentage)%"
             
-            // Fetch and cache poster image using Kingfisher
-            if let posterPath = movie.posterPath,
-               let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") {
-                posterView.kf.setImage(
-                    with: url,
-                    placeholder: UIImage(systemName: "film"),
-                    options: [
-                        .transition(.fade(0.2)),
-                        .cacheOriginalImage
-                    ]
-                )
+            // Fetch and cache poster image using RemoteImageView
+            if let posterPath = movie.posterPath {
+                let posterURL = "https://image.tmdb.org/t/p/w500\(posterPath)"
+                posterView.loadImage(from: posterURL)
             } else {
-                posterView.image = UIImage(systemName: "film")
-                posterView.tintColor = .systemGray4
-                posterView.backgroundColor = .systemGray6
+                posterView.loadImage(from: nil)
             }
         }
     }
