@@ -38,6 +38,8 @@ excluded:
   - DerivedData
   - MovieHubTests
   - ApplicationTests
+  - MovieHub/Data/DataKit/.build
+  - MovieHub/Domain/DomainKit/.build
 
 # -----------------------------------------------------------------------------
 # Rule Customizations
