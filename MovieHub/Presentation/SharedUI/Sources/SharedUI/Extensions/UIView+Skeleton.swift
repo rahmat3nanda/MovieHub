@@ -49,7 +49,7 @@ public extension UIView {
         static var isSkeletonableKey = "isSkeletonableKey"
     }
     
-    public var isSkeletonable: Bool {
+    var isSkeletonable: Bool {
         get {
             return objc_getAssociatedObject(self, &AssociatedKeys.isSkeletonableKey) as? Bool ?? true
         }
