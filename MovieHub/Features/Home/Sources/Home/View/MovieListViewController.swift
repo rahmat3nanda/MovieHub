@@ -48,12 +48,12 @@ final class MovieListViewController: UIViewController {
         
         movieListView.collectionView.registerCell(MovieItemCell.self)
         movieListView.collectionView.register(
-            MovieListHeaderView.self,
+            UINib(nibName: "MovieListHeaderView", bundle: .module),
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: MovieListHeaderView.reuseIdentifier
         )
         movieListView.collectionView.register(
-            LoadingFooterView.self,
+            UINib(nibName: "LoadingFooterView", bundle: .module),
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
             withReuseIdentifier: LoadingFooterView.reuseIdentifier
         )
