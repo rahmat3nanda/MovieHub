@@ -47,15 +47,15 @@ final class MovieListViewController: UIViewController {
         movieListView.collectionView.delegate = self
         
         movieListView.collectionView.registerCell(MovieItemCell.self)
-        movieListView.collectionView.register(
-            UINib(nibName: "MovieListHeaderView", bundle: .module),
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: MovieListHeaderView.reuseIdentifier
+        movieListView.collectionView.registerSupplementaryView(
+            MovieListHeaderView.self,
+            ofKind: UICollectionView.elementKindSectionHeader,
+            bundle: .module
         )
-        movieListView.collectionView.register(
-            UINib(nibName: "LoadingFooterView", bundle: .module),
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-            withReuseIdentifier: LoadingFooterView.reuseIdentifier
+        movieListView.collectionView.registerSupplementaryView(
+            LoadingFooterView.self,
+            ofKind: UICollectionView.elementKindSectionFooter,
+            bundle: .module
         )
     }
     
@@ -134,24 +134,12 @@ extension MovieListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            guard let header = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: MovieListHeaderView.reuseIdentifier,
-                for: indexPath
-            ) as? MovieListHeaderView else {
-                return UICollectionReusableView()
-            }
+            let header: MovieListHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, for: indexPath)
             header.configure(with: presenter?.title ?? "")
             return header
             
         case UICollectionView.elementKindSectionFooter:
-            guard let footer = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: LoadingFooterView.reuseIdentifier,
-                for: indexPath
-            ) as? LoadingFooterView else {
-                return UICollectionReusableView()
-            }
+            let footer: LoadingFooterView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, for: indexPath)
             footer.setAnimating(isPaginationLoading)
             return footer
             

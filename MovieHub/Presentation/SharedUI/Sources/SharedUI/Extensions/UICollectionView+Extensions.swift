@@ -13,9 +13,22 @@ public extension UICollectionView {
         }
         return cell
     }
+    
+    func registerSupplementaryView<T: UICollectionReusableView>(_ viewClass: T.Type, ofKind kind: String, bundle: Bundle? = nil) {
+        let identifier = String(describing: viewClass)
+        let resolvedBundle = bundle ?? .module
+        register(UINib(nibName: identifier, bundle: resolvedBundle), forSupplementaryViewOfKind: kind, withReuseIdentifier: identifier)
+    }
+    
+    func dequeueReusableSupplementaryView<T: UICollectionReusableView>(ofKind kind: String, for indexPath: IndexPath) -> T {
+        guard let view = dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: T.reuseIdentifier, for: indexPath) as? T else {
+            fatalError("Could not dequeue supplementary view of kind: \(kind) with identifier: \(T.reuseIdentifier)")
+        }
+        return view
+    }
 }
 
-public extension UICollectionViewCell {
+public extension UICollectionReusableView {
     static var reuseIdentifier: String {
         return String(describing: self)
     }

@@ -57,8 +57,6 @@ final class MovieListAppBarView: UIView {
 // MARK: - MovieListHeaderView
 
 final class MovieListHeaderView: UICollectionReusableView {
-    static let reuseIdentifier = "MovieListHeaderView"
-    
     @IBOutlet weak var titleLabel: UILabel!
     
     func configure(with title: String) {
@@ -69,8 +67,6 @@ final class MovieListHeaderView: UICollectionReusableView {
 // MARK: - LoadingFooterView
 
 final class LoadingFooterView: UICollectionReusableView {
-    static let reuseIdentifier = "LoadingFooterView"
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     func setAnimating(_ isAnimating: Bool) {
