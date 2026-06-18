@@ -46,10 +46,7 @@ final class MovieListViewController: UIViewController {
         movieListView.collectionView.dataSource = self
         movieListView.collectionView.delegate = self
         
-        movieListView.collectionView.register(
-            MovieItemCell.self,
-            forCellWithReuseIdentifier: MovieItemCell.reuseIdentifier
-        )
+        movieListView.collectionView.registerCell(MovieItemCell.self)
         movieListView.collectionView.register(
             MovieListHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -118,12 +115,7 @@ extension MovieListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: MovieItemCell.reuseIdentifier,
-            for: indexPath
-        ) as? MovieItemCell else {
-            return UICollectionViewCell()
-        }
+        let cell: MovieItemCell = collectionView.dequeueReusableCell(for: indexPath)
         
         if isFirstLoadLoading {
             cell.configure(with: nil, isLoading: true)

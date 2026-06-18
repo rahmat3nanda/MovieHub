@@ -65,7 +65,7 @@ final class HomeMovieSectionView: UIView {
         cv.alwaysBounceHorizontal = true
         cv.dataSource = self
         cv.delegate = self
-        cv.register(MovieItemCell.self, forCellWithReuseIdentifier: MovieItemCell.reuseIdentifier)
+        cv.registerCell(MovieItemCell.self)
         return cv
     }()
     
@@ -216,12 +216,7 @@ extension HomeMovieSectionView: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: MovieItemCell.reuseIdentifier,
-            for: indexPath
-        ) as? MovieItemCell else {
-            return UICollectionViewCell()
-        }
+        let cell: MovieItemCell = collectionView.dequeueReusableCell(for: indexPath)
         
         switch state {
         case .loading:
