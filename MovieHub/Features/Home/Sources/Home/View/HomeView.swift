@@ -4,88 +4,51 @@ import DesignSystem
 
 final class HomeView: UIView {
     
-    // MARK: - UI Components
+    // MARK: - IBOutlets
     
-    private let scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.alwaysBounceVertical = true
-        view.showsVerticalScrollIndicator = false
-        return view
-    }()
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var appBar: HomeAppBarView!
     
-    private let contentView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    
-    private let stackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 28
-        stack.distribution = .fill
-        return stack
-    }()
-    
-    // Sections in order: Now Playing, Popular, Top Rated, Upcoming
-    let nowPlayingSection = HomeMovieSectionView(title: "Now Playing")
-    let popularSection = HomeMovieSectionView(title: "Popular")
-    let topRatedSection = HomeMovieSectionView(title: "Top Rated")
-    let upcomingSection = HomeMovieSectionView(title: "Upcoming")
+    @IBOutlet weak var nowPlayingSection: HomeMovieSectionView!
+    @IBOutlet weak var popularSection: HomeMovieSectionView!
+    @IBOutlet weak var topRatedSection: HomeMovieSectionView!
+    @IBOutlet weak var upcomingSection: HomeMovieSectionView!
     
     // Pull to Refresh
     let refreshControl = UIRefreshControl()
     var onRefresh: (() -> Void)?
     
-    // App Bar
-    let appBar = HomeAppBarView()
-    
-    // MARK: - Initializer
+    // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configUI()
+        commonInit()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        configUI()
+        commonInit()
     }
-}
-
-fileprivate extension HomeView {
-    func configUI() {
+    
+    // MARK: - Setup
+    
+    private func commonInit() {
         backgroundColor = .background
+        
+        let rootNibView: UIView = loadViewFromNib(bundle: .module)
+        rootNibView.fixInView(self)
         
         // Setup Refresh Control
         refreshControl.addTarget(self, action: #selector(refreshTriggered), for: .valueChanged)
         scrollView.refreshControl = refreshControl
         
-        addSubview(appBar)
-        addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        contentView.addSubview(stackView)
-        
-        // Setup Auto Layout constraints using UtilityKit anchors
-        appBar.anchors.top.pin(to: safeAreaLayoutGuide)
-        appBar.anchors.leading.pin()
-        appBar.anchors.trailing.pin()
-        appBar.anchors.height.equal(56)
-        
-        scrollView.anchors.top.spacing(0, to: appBar.anchors.bottom)
-        scrollView.anchors.leading.pin()
-        scrollView.anchors.trailing.pin()
-        scrollView.anchors.bottom.pin()
-        
-        contentView.anchors.edges.pin()
-        contentView.anchors.width.equal(scrollView.anchors.width)
-        
-        stackView.anchors.edges.pin(insets: UIEdgeInsets(top: 16, left: 0, bottom: 24, right: 0))
-        
-        // Add sections in ordered sequence
-        stackView.addArrangedSubview(nowPlayingSection)
-        stackView.addArrangedSubview(popularSection)
-        stackView.addArrangedSubview(topRatedSection)
-        stackView.addArrangedSubview(upcomingSection)
+        // Configure section titles
+        nowPlayingSection.setTitle("Now Playing")
+        popularSection.setTitle("Popular")
+        topRatedSection.setTitle("Top Rated")
+        upcomingSection.setTitle("Upcoming")
     }
     
     @objc private func refreshTriggered() {

@@ -1,7 +1,7 @@
 import UIKit
 
 extension UIView {
-    func loadViewFromNib<T: UIView>(bundle: Bundle = .module) -> T {
+    public func loadViewFromNib<T: UIView>(bundle: Bundle) -> T {
         guard let nibName = type(of: self).description().components(separatedBy: ".").last else {
             fatalError("NIB not found")
         }
@@ -14,7 +14,11 @@ extension UIView {
         return view
     }
 
-    func fixInView(_ container: UIView) {
+    func loadViewFromNib<T: UIView>() -> T {
+        return loadViewFromNib(bundle: .module)
+    }
+
+    public func fixInView(_ container: UIView) {
         translatesAutoresizingMaskIntoConstraints = false
         frame = container.bounds
         container.addSubview(self)

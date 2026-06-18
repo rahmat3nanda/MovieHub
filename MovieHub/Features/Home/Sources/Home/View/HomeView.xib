@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeView" customModule="Home">
+            <connections>
+                <outlet property="appBar" destination="app-bar" id="outlet-app-bar"/>
+                <outlet property="scrollView" destination="scroll-view" id="outlet-scroll-view"/>
+                <outlet property="contentView" destination="content-view" id="outlet-content-view"/>
+                <outlet property="stackView" destination="stack-view" id="outlet-stack-view"/>
+                <outlet property="nowPlayingSection" destination="sec-now-playing" id="outlet-sec-now-playing"/>
+                <outlet property="popularSection" destination="sec-popular" id="outlet-sec-popular"/>
+                <outlet property="topRatedSection" destination="sec-top-rated" id="outlet-sec-top-rated"/>
+                <outlet property="upcomingSection" destination="sec-upcoming" id="outlet-sec-upcoming"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <!-- App Bar View -->
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="app-bar" customClass="HomeAppBarView" customModule="Home">
+                    <rect key="frame" x="0.0" y="59" width="393" height="56"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="height-appbar"/>
+                    </constraints>
+                </view>
+                <!-- Scroll View -->
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="scroll-view">
+                    <rect key="frame" x="0.0" y="115" width="393" height="737"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="content-view" userLabel="Content View">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1144"/>
+                            <subviews>
+                                <!-- Stack View -->
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="stack-view">
+                                    <rect key="frame" x="0.0" y="16" width="393" height="1104"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sec-now-playing" customClass="HomeMovieSectionView" customModule="Home">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="255"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="height-now-playing-min"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sec-popular" customClass="HomeMovieSectionView" customModule="Home">
+                                            <rect key="frame" x="0.0" y="283" width="393" height="255"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="height-popular-min"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sec-top-rated" customClass="HomeMovieSectionView" customModule="Home">
+                                            <rect key="frame" x="0.0" y="566" width="393" height="255"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="height-top-rated-min"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sec-upcoming" customClass="HomeMovieSectionView" customModule="Home">
+                                            <rect key="frame" x="0.0" y="849" width="393" height="255"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="height-upcoming-min"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="stack-view" firstAttribute="top" secondItem="content-view" secondAttribute="top" constant="16" id="top-stack"/>
+                                <constraint firstItem="stack-view" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" id="leading-stack"/>
+                                <constraint firstAttribute="trailing" secondItem="stack-view" secondAttribute="trailing" id="trailing-stack"/>
+                                <constraint firstAttribute="bottom" secondItem="stack-view" secondAttribute="bottom" constant="24" id="bottom-stack"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="content-view" firstAttribute="top" secondItem="scroll-view" secondAttribute="top" id="top-scroll-content"/>
+                        <constraint firstItem="content-view" firstAttribute="leading" secondItem="scroll-view" secondAttribute="leading" id="leading-scroll-content"/>
+                        <constraint firstItem="content-view" firstAttribute="trailing" secondItem="scroll-view" secondAttribute="trailing" id="trailing-scroll-content"/>
+                        <constraint firstItem="content-view" firstAttribute="bottom" secondItem="scroll-view" secondAttribute="bottom" id="bottom-scroll-content"/>
+                        <constraint firstItem="content-view" firstAttribute="width" secondItem="scroll-view" secondAttribute="width" id="width-scroll-content"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="app-bar" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="top-appbar"/>
+                <constraint firstItem="app-bar" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="leading-appbar"/>
+                <constraint firstItem="app-bar" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="trailing-appbar"/>
+                <constraint firstItem="scroll-view" firstAttribute="top" secondItem="app-bar" secondAttribute="bottom" id="top-scroll"/>
+                <constraint firstItem="scroll-view" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="leading-scroll"/>
+                <constraint firstItem="scroll-view" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="trailing-scroll"/>
+                <constraint firstAttribute="bottom" secondItem="scroll-view" secondAttribute="bottom" id="bottom-scroll"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="83"/>
+        </view>
+    </objects>
+</document>
