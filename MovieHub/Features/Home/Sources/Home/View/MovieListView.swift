@@ -9,60 +9,40 @@ final class MovieListAppBarView: UIView {
     var onBackTapped: (() -> Void)?
     var onSearchTapped: (() -> Void)?
     
-    private lazy var backButton: UIButton = {
-        let button = UIButton(type: .system)
-        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .semibold)
-        let image = UIImage(systemName: "chevron.left", withConfiguration: config)
-        button.setImage(image, for: .normal)
-        button.tintColor = .white
-        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        return button
-    }()
+    // MARK: - IBOutlets
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "MovieHub"
-        label.textColor = .secondary
-        label.font = .systemFont(ofSize: 22, weight: .bold)
-        label.textAlignment = .center
-        return label
-    }()
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var searchButton: UIButton!
     
-    private lazy var searchButton: UIButton = {
-        let button = UIButton(type: .system)
-        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)
-        let image = UIImage(systemName: "magnifyingglass", withConfiguration: config)
-        button.setImage(image, for: .normal)
-        button.tintColor = .white
-        button.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
-        return button
-    }()
+    // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupUI()
+        commonInit()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        commonInit()
     }
     
-    private func setupUI() {
+    private func commonInit() {
         backgroundColor = .clear
         
-        addSubview(backButton)
-        addSubview(titleLabel)
-        addSubview(searchButton)
+        let rootNibView: UIView = loadViewFromNib(bundle: .module)
+        rootNibView.fixInView(self)
         
-        backButton.anchors.leading.pin(inset: 8)
-        backButton.anchors.centerY.align()
-        backButton.anchors.size.equal(CGSize(width: 44, height: 44))
+        // Setup Button configs
+        let backConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .semibold)
+        let backImage = UIImage(systemName: "chevron.left", withConfiguration: backConfig)
+        backButton.setImage(backImage, for: .normal)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         
-        titleLabel.anchors.center.align(with: self)
-        
-        searchButton.anchors.trailing.pin(inset: 16)
-        searchButton.anchors.centerY.align()
-        searchButton.anchors.size.equal(CGSize(width: 44, height: 44))
+        let searchConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)
+        let searchImage = UIImage(systemName: "magnifyingglass", withConfiguration: searchConfig)
+        searchButton.setImage(searchImage, for: .normal)
+        searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
     }
     
     @objc private func backButtonTapped() {
@@ -77,28 +57,7 @@ final class MovieListAppBarView: UIView {
 // MARK: - MovieListHeaderView
 
 final class MovieListHeaderView: UICollectionReusableView {
-    static let reuseIdentifier = "MovieListHeaderView"
-    
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 32, weight: .bold)
-        label.textAlignment = .left
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(titleLabel)
-        titleLabel.anchors.leading.pin(inset: 16)
-        titleLabel.anchors.trailing.pin(inset: 16)
-        titleLabel.anchors.top.pin(inset: 12)
-        titleLabel.anchors.bottom.pin(inset: 8)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    @IBOutlet weak var titleLabel: UILabel!
     
     func configure(with title: String) {
         titleLabel.text = title
@@ -108,24 +67,7 @@ final class MovieListHeaderView: UICollectionReusableView {
 // MARK: - LoadingFooterView
 
 final class LoadingFooterView: UICollectionReusableView {
-    static let reuseIdentifier = "LoadingFooterView"
-    
-    private let activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .medium)
-        indicator.color = .white
-        indicator.hidesWhenStopped = true
-        return indicator
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(activityIndicator)
-        activityIndicator.anchors.center.align()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     func setAnimating(_ isAnimating: Bool) {
         if isAnimating {
@@ -145,106 +87,45 @@ final class MovieListView: UIView {
     var onRetryTapped: (() -> Void)?
     var onRefresh: (() -> Void)?
     
-    let appBar = MovieListAppBarView()
+    // MARK: - IBOutlets
     
-    let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 16
-        layout.minimumInteritemSpacing = 16
-        layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .clear
-        cv.showsVerticalScrollIndicator = true
-        cv.alwaysBounceVertical = true
-        return cv
-    }()
+    @IBOutlet weak var appBar: MovieListAppBarView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var emptyLabel: UILabel!
+    @IBOutlet weak var errorStack: UIStackView!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var retryButton: UIButton!
     
     let refreshControl = UIRefreshControl()
     
-    private let emptyLabel: UILabel = {
-        let label = UILabel()
-        label.text = "No movies found."
-        label.textColor = .secondaryLabel
-        label.font = .systemFont(ofSize: 14, weight: .medium)
-        label.textAlignment = .center
-        label.isHidden = true
-        return label
-    }()
-    
-    private let errorLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .systemRed
-        label.font = .systemFont(ofSize: 13, weight: .medium)
-        label.textAlignment = .center
-        label.numberOfLines = 3
-        return label
-    }()
-    
-    private lazy var retryButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Retry", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.systemBlue.cgColor
-        button.layer.cornerRadius = 6
-        button.contentEdgeInsets = UIEdgeInsets(top: 6, left: 16, bottom: 6, right: 16)
-        button.addTarget(self, action: #selector(retryTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    private let errorStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 10
-        stack.alignment = .center
-        stack.isHidden = true
-        return stack
-    }()
+    // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configUI()
+        commonInit()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        configUI()
+        commonInit()
     }
     
-    private func configUI() {
+    private func commonInit() {
         backgroundColor = .background
         
+        let rootNibView: UIView = loadViewFromNib(bundle: .module)
+        rootNibView.fixInView(self)
+        
+        // Setup refresh control and callbacks
         refreshControl.addTarget(self, action: #selector(refreshTriggered), for: .valueChanged)
         collectionView.refreshControl = refreshControl
         
-        addSubview(appBar)
-        addSubview(collectionView)
-        addSubview(emptyLabel)
+        retryButton.addTarget(self, action: #selector(retryTapped), for: .touchUpInside)
         
-        errorStack.addArrangedSubview(errorLabel)
-        errorStack.addArrangedSubview(retryButton)
-        addSubview(errorStack)
-        
-        appBar.anchors.top.pin(to: safeAreaLayoutGuide)
-        appBar.anchors.leading.pin()
-        appBar.anchors.trailing.pin()
-        appBar.anchors.height.equal(56)
-        
-        collectionView.anchors.top.spacing(0, to: appBar.anchors.bottom)
-        collectionView.anchors.leading.pin()
-        collectionView.anchors.trailing.pin()
-        collectionView.anchors.bottom.pin()
-        
-        emptyLabel.anchors.center.align(with: collectionView)
-        emptyLabel.anchors.leading.pin(inset: 32)
-        emptyLabel.anchors.trailing.pin(inset: 32)
-        
-        errorStack.anchors.center.align(with: collectionView)
-        errorStack.anchors.leading.pin(inset: 32)
-        errorStack.anchors.trailing.pin(inset: 32)
+        // Retry button visual setup
+        retryButton.layer.borderWidth = 1
+        retryButton.layer.borderColor = UIColor.systemBlue.cgColor
+        retryButton.layer.cornerRadius = 6
         
         appBar.onBackTapped = { [weak self] in
             self?.onBackTapped?()

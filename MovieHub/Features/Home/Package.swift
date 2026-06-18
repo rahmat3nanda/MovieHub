@@ -27,6 +27,15 @@ let package = Package(
                 "SharedUI",
                 "UtilityKit",
                 "Movie"
+            ],
+            resources: [
+                .process("View/HomeAppBarView.xib"),
+                .process("View/HomeMovieSectionView.xib"),
+                .process("View/HomeView.xib"),
+                .process("View/MovieListAppBarView.xib"),
+                .process("View/MovieListView.xib"),
+                .process("View/MovieListHeaderView.xib"),
+                .process("View/LoadingFooterView.xib")
             ]
         )
     ]

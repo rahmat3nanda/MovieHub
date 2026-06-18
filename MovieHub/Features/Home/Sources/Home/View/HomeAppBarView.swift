@@ -7,52 +7,36 @@ final class HomeAppBarView: UIView {
     // MARK: - Callbacks
     var onSearchTapped: (() -> Void)?
     
-    // MARK: - UI Components
+    // MARK: - IBOutlets
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "MovieHub"
-        label.textColor = .secondary
-        label.font = .systemFont(ofSize: 22, weight: .bold)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private lazy var searchButton: UIButton = {
-        let button = UIButton(type: .system)
-        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)
-        let image = UIImage(systemName: "magnifyingglass", withConfiguration: config)
-        button.setImage(image, for: .normal)
-        button.tintColor = .white
-        button.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
-        return button
-    }()
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var searchButton: UIButton!
     
     // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupUI()
+        commonInit()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        commonInit()
     }
     
     // MARK: - Setup
     
-    private func setupUI() {
+    private func commonInit() {
         backgroundColor = .clear
         
-        addSubview(titleLabel)
-        addSubview(searchButton)
+        let rootNibView: UIView = loadViewFromNib(bundle: .module)
+        rootNibView.fixInView(self)
         
-        // Layout using UtilityKit anchors
-        titleLabel.anchors.center.align(with: self)
-        
-        searchButton.anchors.trailing.pin(inset: 16)
-        searchButton.anchors.centerY.align()
-        searchButton.anchors.size.equal(CGSize(width: 44, height: 44))
+        // Setup Button config
+        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)
+        let image = UIImage(systemName: "magnifyingglass", withConfiguration: config)
+        searchButton.setImage(image, for: .normal)
+        searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
     }
     
     // MARK: - Actions

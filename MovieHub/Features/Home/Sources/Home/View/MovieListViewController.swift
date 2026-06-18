@@ -46,19 +46,16 @@ final class MovieListViewController: UIViewController {
         movieListView.collectionView.dataSource = self
         movieListView.collectionView.delegate = self
         
-        movieListView.collectionView.register(
-            MovieItemCell.self,
-            forCellWithReuseIdentifier: MovieItemCell.reuseIdentifier
-        )
-        movieListView.collectionView.register(
+        movieListView.collectionView.registerCell(MovieItemCell.self)
+        movieListView.collectionView.registerSupplementaryView(
             MovieListHeaderView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: MovieListHeaderView.reuseIdentifier
+            ofKind: UICollectionView.elementKindSectionHeader,
+            bundle: .module
         )
-        movieListView.collectionView.register(
+        movieListView.collectionView.registerSupplementaryView(
             LoadingFooterView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-            withReuseIdentifier: LoadingFooterView.reuseIdentifier
+            ofKind: UICollectionView.elementKindSectionFooter,
+            bundle: .module
         )
     }
     
@@ -118,12 +115,7 @@ extension MovieListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: MovieItemCell.reuseIdentifier,
-            for: indexPath
-        ) as? MovieItemCell else {
-            return UICollectionViewCell()
-        }
+        let cell: MovieItemCell = collectionView.dequeueReusableCell(for: indexPath)
         
         if isFirstLoadLoading {
             cell.configure(with: nil, isLoading: true)
@@ -142,24 +134,12 @@ extension MovieListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            guard let header = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: MovieListHeaderView.reuseIdentifier,
-                for: indexPath
-            ) as? MovieListHeaderView else {
-                return UICollectionReusableView()
-            }
+            let header: MovieListHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, for: indexPath)
             header.configure(with: presenter?.title ?? "")
             return header
             
         case UICollectionView.elementKindSectionFooter:
-            guard let footer = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: LoadingFooterView.reuseIdentifier,
-                for: indexPath
-            ) as? LoadingFooterView else {
-                return UICollectionReusableView()
-            }
+            let footer: LoadingFooterView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, for: indexPath)
             footer.setAnimating(isPaginationLoading)
             return footer
             
